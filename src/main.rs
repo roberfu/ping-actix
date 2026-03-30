@@ -1,16 +1,8 @@
 use actix_web::{get, App, HttpServer, Responder, HttpResponse};
-use serde::Serialize;
-
-#[derive(Serialize)]
-struct PingResponse {
-    message: String,
-}
 
 #[get("/ping")]
 async fn ping() -> impl Responder {
-    HttpResponse::Ok().json(PingResponse {
-        message: "its all good man".to_string(),
-    })
+    HttpResponse::Ok().json(serde_json::json!({ "message": "pong" }))
 }
 
 #[actix_web::main]
